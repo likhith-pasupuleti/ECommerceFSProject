@@ -13,9 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService
@@ -63,6 +61,7 @@ public class CategoryServiceImpl implements CategoryService
         Category category=modelMapper.map(categoryDTO,Category.class);
 
         Category findCategory=categoryRepository.findByCategoryName(categoryDTO.getCategoryName());
+
         if(findCategory!=null)
             throw new APIException("Category with this name "+category.getCategoryName()+" already exists!!!");
 
